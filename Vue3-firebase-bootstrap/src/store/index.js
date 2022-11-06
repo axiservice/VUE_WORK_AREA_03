@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 
 // firebase imports
+import consoleDebugger from '../commonUtils.js'
 import { auth, db } from '../firebase/config'
 import {
   createUserWithEmailAndPassword,
@@ -17,7 +18,9 @@ const store = createStore({
   mutations: {
     setUser(state, payload) {
       state.user = payload
-      console.log('user state changed:', state.user)
+      //console.log('user state changed:', state.user)
+      //console.log('user state changed ', state.user!=null ? 'Login: '+state.user.email : " *** Logout ***")
+      consoleDebugger('user state changed '+ (state.user!=null ? 'Login: '+state.user.email : ' *** Logout ***'));
     },
     setAuthIsReady(state, payload) {
       state.authIsReady = payload
