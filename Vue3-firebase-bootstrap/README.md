@@ -1,8 +1,9 @@
-# my-blog
+# VUE3 FIREBASE BOOTSTRAP
 
 ## Project setup
 ```
 npm install
+npm install --save vue-router firebase-admin/app firebase-admin/firestore bootstrap
 ```
 
 ### Compiles and hot-reloads for development
