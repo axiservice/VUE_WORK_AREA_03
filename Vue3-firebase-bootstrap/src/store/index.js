@@ -23,8 +23,7 @@ const store = createStore({
       state.authIsReady = payload
     },
     addAllBooks(state, payload) {
-      state.books.push(payload)
-      console.log('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZaddAllBooks():', state)
+      state.books.push(payload);
     },
     cleanStore(state) {
       state.books = []
