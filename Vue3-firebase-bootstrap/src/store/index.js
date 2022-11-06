@@ -70,13 +70,13 @@ const store = createStore({
     },
     deleteBook({ commit }, book) {
       db.collection('books').doc(book.id).delete()
-      commit('addAllBooks', book)
+      commit
     },
     updateBook({ commit }, book) {
       db.collection('books').doc(book.id).update({
         title: book.title
       })
-      commit('addAllBooks', book)
+      commit
     },
     addAllBooks({ commit }, book) {
       commit('addAllBooks', book)
