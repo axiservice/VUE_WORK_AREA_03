@@ -28,8 +28,14 @@ const store = createStore({
     addAllBooks(state, payload) {
       state.books.push(payload);
     },
+    addAllDossier(state, payload) {
+      state.dossier.push(payload);
+    },
     cleanStore(state) {
       state.books = []
+    },
+    cleanDossier(state) {
+      state.dossier = []
     },
     dummy(){}
   },
@@ -60,39 +66,64 @@ const store = createStore({
       await signOut(auth)
       context.commit('setUser', null)
     },
-
-    addBook({ commit }, book) {
+    addBook(context, book) {
       db.collection('books').add(book).then((docref) => {
 
         db.collection('books').doc(docref.id).update({
           id: docref.id
         })
-
       })
-      commit('dummy', book)
     },
-    deleteBook({ commit }, book) {
+    addDossier(context, fdata) {
+      db.collection('dossier').add(fdata).then((docref) => {
+        db.collection('dossier').doc(docref.id).update({
+          id: docref.id
+        })
+      })
+    },
+    deleteBook(context, book) {
       db.collection('books').doc(book.id).delete()
-      commit
     },
-    updateBook({ commit }, book) {
+    updateBook(context, book) {
       db.collection('books').doc(book.id).update({
         title: book.title
       })
-      commit
     },
-    addAllBooks({ commit }, book) {
-      commit('addAllBooks', book)
+    updateDossier(context, fdata) {
+      console.log("dossier upate:::", fdata.idDossier);
+      db.collection('dossier').doc(fdata.id).update(fdata)
+    },
+    addAllBooks(context, book) {
+      context.commit('addAllBooks', book)
+    },
+    addAllDossier(context, fdata) {
+      context.commit('addAllDossier', fdata)
     },
     cleanStore({ commit }) {
       commit('cleanStore')
     },
-
+    cleanDossier({ commit }) {
+      commit('cleanDossier')
+    },
   },
   getters: {
     getAllBooks(state) {
       return state.books
-    }
+    },
+    getAllDossier(state) {
+      return state.dossier
+    },
+    getDossierById:() => async (id) =>  {
+      const fbDati = await db.collection('dossier').doc(id).get()
+      return fbDati.exists ? fbDati.data() : null
+    },
+/*     getDossierById:(state) => (id) => {
+      //console.log("state:::", state.dossier.find(dossier => dossier.id === id));
+      console.log("state:::", state.dossier);
+      return state.dossier.find(x => x.id === id)
+      //return {id: id, name: "NNNNN", email: "xxxx",  }
+
+    } */
   },
   modules: {
 

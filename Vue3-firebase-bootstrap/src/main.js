@@ -5,6 +5,10 @@ import router from './router'
 // global styles
 import './assets/main.css'
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+
+
 
 // import store
 import store from './store/index'

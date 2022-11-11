@@ -6,6 +6,9 @@
       <div>
         <router-link to="/">Home</router-link>
       </div>
+      <div>
+        <router-link to="/dossier">Dossier</router-link>
+      </div>
       <!-- for logged in users -->
       <div v-if="user">
         <span>Logged in as {{ user.email }}</span>
