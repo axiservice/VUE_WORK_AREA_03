@@ -90,8 +90,12 @@ const store = createStore({
       })
     },
     updateDossier(context, fdata) {
-      console.log("dossier upate:::", fdata.idDossier);
+      console.log("dossier update:::", fdata.id);
       db.collection('dossier').doc(fdata.id).update(fdata)
+    },
+    deleteDossier(context, fdata) {
+      console.log("dossier delete:::", fdata);
+      db.collection('dossier').doc(fdata).delete()
     },
     addAllBooks(context, book) {
       context.commit('addAllBooks', book)

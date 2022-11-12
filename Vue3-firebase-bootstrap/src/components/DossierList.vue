@@ -1,4 +1,25 @@
 <template>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">DOSSIER Edit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h6>ID: {{currentDialogItem.id}} </h6>
+          <component :is="editComponent" :id="currentDialogItem.id" :key="componentKey" ></component>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Undo</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="card mt-4">
     <table class="table m-0">
       <thead>
@@ -27,6 +48,9 @@
                 Edit
               </button>
             </router-link>
+            <button class="btn btn-primary btn-sm me-2" @click="editDossier(id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Edit2
+            </button>
             <button class="btn btn-danger btn-sm" @click="deleteDossier(id)">
               Delete
             </button>
@@ -38,15 +62,35 @@
 </template>
 
 <script>
-//import { useLoadUsers, deleteUser } from '@/firebase'
-//import { useLoadDossier } from '@/services/DossierService'
-import { computed } from "vue";
+import { ref, computed } from 'vue'
 import { useStore } from "vuex";
+import dossierEdit2 from '../components/DossierEdit2.vue'
 
 export default {
+  components: { dossierEdit2 },
+  data(){
+    return { 
+       componentKey: ref(0),
+       editComponent:"",
+       show: false,
+       currentDialogItem: {id:""}
+    }
+  },
   setup() {
     const store = useStore();
-    return { dossier: computed(() => store.getters.getAllDossier), }
+    return { store, dossier: computed(() => store.getters.getAllDossier)}
+  },
+  methods:{
+    deleteDossier(id){
+      this.store.dispatch("deleteDossier", id);
+    },
+    editDossier(id){
+      this.editComponent="dossierEdit2"
+      this.currentDialogItem.id = id //"MrhRorqwHBtRAtJnSUNs";
+      console.log(">1>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
+      this.componentKey += 1;
+      return id
+    }
   }
 }
 </script>
