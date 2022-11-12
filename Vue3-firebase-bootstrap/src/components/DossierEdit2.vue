@@ -22,7 +22,7 @@
         </div>
   
         <button @click="updateDossier()" class="btn btn-primary mt-3" data-bs-dismiss="modal">
-          Update
+          Save changes
         </button>
       </form>
     </div>

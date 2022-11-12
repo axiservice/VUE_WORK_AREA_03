@@ -13,7 +13,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Undo</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -89,7 +88,6 @@ export default {
       this.currentDialogItem.id = id //"MrhRorqwHBtRAtJnSUNs";
       console.log(">1>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
       this.componentKey += 1;
-      return id
     }
   }
 }
