@@ -31,13 +31,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 npm install -g firebase-tools
 ```
-### Login adn select project
+### Login and select project
 ```
 firebase login
 ```
-### Update deploy config for source dir edit the file: firebase.json
+### Update deploy config for source "dist" dir - Edit the file: firebase.json
 ```
-"public": "dist"
+{
+  "hosting": {
+    "public": "dist",
+    ....
 ```
 ### Deploy to remote Firebase Host
 ```
