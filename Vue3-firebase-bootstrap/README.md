@@ -23,3 +23,23 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+## Deploy on Firebase Host
+
+### Setup Firebase environmant
+```
+npm install -g firebase-tools
+```
+### Login adn select project
+```
+firebase login
+```
+### Update deploy config for source dir edit the file: firebase.json
+```
+"public": "dist"
+```
+### Deploy to remote Firebase Host
+```
+firebase deploy
+```
