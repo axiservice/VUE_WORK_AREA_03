@@ -55,6 +55,10 @@ firebase login
     "public": "dist",
     ....
 ```
+### Compiles and minifies for production
+```
+npm run build
+```
 ### Deploy to remote Firebase Host
 ```
 firebase deploy
