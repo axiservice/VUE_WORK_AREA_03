@@ -43,7 +43,7 @@ export default {
     const router = useRouter()
     const onSubmit = async () => {
       store.dispatch("addDossier", { ...form });
-      router.push('/')
+      router.push('/dossier')
       form.name = ''
       form.email = ''
       form.livello = ''

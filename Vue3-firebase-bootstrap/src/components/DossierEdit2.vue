@@ -1,5 +1,27 @@
 <template>
-    <div> 
+    <div v-if="form.operation === 'delete'">
+      <h6 class="modal-title" id="exampleModalLabel">DELETE - ID: {{form.id}} </h6>
+      <form @submit.prevent="update">
+        <div class="form-group">
+          <label>Name {{form.name}}</label>
+        </div>
+  
+        <div class="form-group mt-3">
+          <label>Email {{form.email}}</label>
+        </div>
+  
+        <div class="form-group mt-3">
+          <label>Livello {{form.livello}}</label>
+        </div>
+  
+        <button @click="deleteDossier()" class="btn btn-primary mt-3" data-bs-dismiss="modal">
+          Confirm Delete Dossier
+        </button>
+      </form>
+    </div>
+
+    <div v-else-if="form.operation === 'edit'"> 
+      <h6 class="modal-title" id="exampleModalLabel">EDIT - ID: {{form.id}} </h6>
       <form @submit.prevent="update">
         <div class="form-group">
           <label>Name</label>
@@ -34,14 +56,16 @@
   import { useStore } from "vuex";
   
   export default {
-    props: ['id'],
+    props: ['id','operation'],
     setup(props) {
-      console.log(">2>>>>>>>>>>>>>>>>", props.id);
+      console.log(">2.id>>>>>>>>>>>>>>>>", props.id);
+      console.log(">2.operation>>>>>>>>>>>>>>", props.operation);
       const store = useStore();
-      const form = reactive({id: '', name: '', email: '', livello: '' })
+      const form = reactive({operation: '', id: '', name: '', email: '', livello: '' })
       onMounted(async () => {
         const user = await store.getters.getDossierById(props.id)   //await getDossier(idDossier.value)
         console.log(">3>>>>>>>>>>>>>>>>", props.id);
+        form.operation = props.operation
         form.id = props.id
         form.name = user.name
         form.email = user.email
@@ -60,10 +84,15 @@
         //console.log("dossier:", dossier);
         store.dispatch("updateDossier", {  ...form });
       }
+
+      function deleteDossier() {
+        store.dispatch("deleteDossier", form.id);
+      }
   
       //console.log("getDossierById:", idDossier);
       return { 
         updateDossier, 
+        deleteDossier,
         form
       }
     }

@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Dossier from '../views/Dossier.vue' 
 import CreateDossier from '../views/CreateDossier.vue'
 import EditDossier from '../views/EditDossier'
+import Crud from '../views/Crud'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/editDossier/:id',
     name: 'EditDossier',
     component: EditDossier
+  },
+  {
+    path: '/crud',
+    name: 'Crud',
+    component: Crud
   },
 ]
 

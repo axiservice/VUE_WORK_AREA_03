@@ -4,12 +4,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">DOSSIER Edit</h5>
+          <h5 class="modal-title" id="exampleModalLabel">DOSSIER</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h6>ID: {{currentDialogItem.id}} </h6>
-          <component :is="editComponent" :id="currentDialogItem.id" :key="componentKey" ></component>
+          <component :is="editComponent" :id="currentDialogItem.id" :key="componentKey" :operation="operation" ></component>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Undo</button>
@@ -50,7 +49,7 @@
             <button class="btn btn-primary btn-sm me-2" @click="editDossier(id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Edit2
             </button>
-            <button class="btn btn-danger btn-sm" @click="deleteDossier(id)">
+            <button class="btn btn-danger btn-sm" @click="deleteDossier(id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Delete
             </button>
           </td>
@@ -71,6 +70,7 @@ export default {
     return { 
        componentKey: ref(0),
        editComponent:"",
+       operation:"",
        show: false,
        currentDialogItem: {id:""}
     }
@@ -81,12 +81,19 @@ export default {
   },
   methods:{
     deleteDossier(id){
-      this.store.dispatch("deleteDossier", id);
+      //this.store.dispatch("deleteDossier", id);
+      this.editComponent="dossierEdit2"
+      this.operation = "delete"
+      this.currentDialogItem.id = id
+      console.log(">1.1>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
+      console.log(">1.operation>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.operation)
+      this.componentKey += 1;
     },
     editDossier(id){
       this.editComponent="dossierEdit2"
+      this.operation = "edit"
       this.currentDialogItem.id = id //"MrhRorqwHBtRAtJnSUNs";
-      console.log(">1>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
+      console.log(">1.2>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
       this.componentKey += 1;
     }
   }

@@ -9,7 +9,9 @@ import {
   signOut,
   onAuthStateChanged
 } from 'firebase/auth'
+import useRouter from '../router'
 
+const router = useRouter;
 const store = createStore({
   state: {
     user: null,
@@ -65,6 +67,7 @@ const store = createStore({
 
       await signOut(auth)
       context.commit('setUser', null)
+      router.push("/")
     },
     addBook(context, book) {
       db.collection('books').add(book).then((docref) => {
@@ -111,6 +114,9 @@ const store = createStore({
     },
   },
   getters: {
+    getGetCurrentUser(state) {
+      return state.user
+    },
     getAllBooks(state) {
       return state.books
     },

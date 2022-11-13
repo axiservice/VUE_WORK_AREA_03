@@ -6,13 +6,12 @@
       <div>
         <router-link to="/">Home</router-link>
       </div>
-      <div>
-        <router-link to="/dossier">Dossier</router-link>
-      </div>
       <!-- for logged in users -->
       <div v-if="user">
+        <router-link to="/dossier">Dossier</router-link>
+        <router-link to="/crud">Crud</router-link>
         <span>Logged in as {{ user.email }}</span>
-        <button @click="handleClick">Logout</button>
+        <button @click="logoutAction">Logout</button>
       </div>
       <!-- for logged out users -->
       <div v-if="!user">
@@ -31,12 +30,12 @@ export default {
   setup() {
     const store = useStore()
 
-    const handleClick = () => {
+    const logoutAction = () => {
       store.dispatch('logout')
     }
 
     return {
-      handleClick,
+      logoutAction,
       user: computed(() => store.state.user),
       authIsReady: computed(() => store.state.authIsReady)
     }
