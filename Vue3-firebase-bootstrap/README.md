@@ -19,6 +19,19 @@ VUE_APP_MESSAGING_SENDER_ID=****[CHANGE IT]****
 VUE_APP_APP_ID=****[CHANGE IT]****
 VUE_APP_MEASUREMENT_ID=****[CHANGE IT]****
 ```
+
+### Install npm@10.5.0
+sudo npm install -g npm@10.5.0
+
+### Install VUE Loader
+sudo npm i vue-loader --force
+
+### Install ESLINT
+npm i -D eslint@7.32.0
+
+### Update addictions
+npm audit fix --force
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
