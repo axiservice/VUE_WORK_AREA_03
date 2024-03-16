@@ -43,7 +43,7 @@ const store = createStore({
   },
   actions: {
     async signup(context, { email, password }) {
-      console.log('signup action')
+      consoleDebugger('signup action')
 
       const res = await createUserWithEmailAndPassword(auth, email, password)
       if (res) {
@@ -53,7 +53,7 @@ const store = createStore({
       }
     },
     async login(context, { email, password }) {
-      console.log('login action')
+      consoleDebugger('login action')
 
       const res = await signInWithEmailAndPassword(auth, email, password)
       if (res) {
@@ -63,7 +63,7 @@ const store = createStore({
       }
     },
     async logout(context) {
-      console.log('logout action')
+      consoleDebugger('logout action')
 
       await signOut(auth)
       context.commit('setUser', null)
@@ -93,11 +93,11 @@ const store = createStore({
       })
     },
     updateDossier(context, fdata) {
-      console.log("dossier update:::", fdata.id);
+      consoleDebugger("dossier update:::", fdata.id);
       db.collection('dossier').doc(fdata.id).update(fdata)
     },
     deleteDossier(context, fdata) {
-      console.log("dossier delete:::", fdata);
+      consoleDebugger("dossier delete:::", fdata);
       db.collection('dossier').doc(fdata).delete()
     },
     addAllBooks(context, book) {

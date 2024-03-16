@@ -63,6 +63,7 @@
 import { ref, computed } from 'vue'
 import { useStore } from "vuex";
 import dossierEdit2 from '../components/DossierEdit2.vue'
+import consoleDebugger from '../commonUtils.js'
 
 export default {
   components: { dossierEdit2 },
@@ -85,15 +86,15 @@ export default {
       this.editComponent="dossierEdit2"
       this.operation = "delete"
       this.currentDialogItem.id = id
-      console.log(">1.1>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
-      console.log(">1.operation>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.operation)
+      consoleDebugger(">1.1>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
+      consoleDebugger(">1.operation>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.operation)
       this.componentKey += 1;
     },
     editDossier(id){
       this.editComponent="dossierEdit2"
       this.operation = "edit"
       this.currentDialogItem.id = id //"MrhRorqwHBtRAtJnSUNs";
-      console.log(">1.2>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
+      consoleDebugger(">1.2>>>>>>>>>>>>>>>>>>>>>>>>>>>>",this.currentDialogItem.id)
       this.componentKey += 1;
     }
   }

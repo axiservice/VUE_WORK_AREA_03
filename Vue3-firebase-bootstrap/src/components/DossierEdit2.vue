@@ -54,17 +54,18 @@
   import { onMounted, reactive } from 'vue'
   //import { useRoute, useRouter } from 'vue-router'
   import { useStore } from "vuex";
+  import consoleDebugger from '../commonUtils.js'
   
   export default {
     props: ['id','operation'],
     setup(props) {
-      console.log(">2.id>>>>>>>>>>>>>>>>", props.id);
-      console.log(">2.operation>>>>>>>>>>>>>>", props.operation);
+      consoleDebugger(">2.id>>>>>>>>>>>>>>>>", props.id);
+      consoleDebugger(">2.operation>>>>>>>>>>>>>>", props.operation);
       const store = useStore();
       const form = reactive({operation: '', id: '', name: '', email: '', livello: '' })
       onMounted(async () => {
         const user = await store.getters.getDossierById(props.id)   //await getDossier(idDossier.value)
-        console.log(">3>>>>>>>>>>>>>>>>", props.id);
+        consoleDebugger(">3>>>>>>>>>>>>>>>>", props.id);
         form.operation = props.operation
         form.id = props.id
         form.name = user.name

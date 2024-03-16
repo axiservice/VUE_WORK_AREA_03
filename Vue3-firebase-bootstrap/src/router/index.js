@@ -7,6 +7,7 @@ import CreateDossier from '../views/CreateDossier.vue'
 import EditDossier from '../views/EditDossier'
 import Crud from '../views/Crud'
 
+const history = createWebHistory(process.env.BASE_URL)
 const routes = [
   {
     path: '/',
@@ -46,7 +47,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history,
   routes
 })
 
