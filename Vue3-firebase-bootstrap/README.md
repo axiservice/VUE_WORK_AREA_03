@@ -20,6 +20,15 @@ VUE_APP_APP_ID=****[CHANGE IT]****
 VUE_APP_MEASUREMENT_ID=****[CHANGE IT]****
 ```
 
+### Initial setup 
+```
+sudo npm install
+npm run serve
+```
+
+
+### Setup Addendum
+
 ### Install npm@10.5.0
 sudo npm install -g npm@10.5.0
 
